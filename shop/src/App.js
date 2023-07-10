@@ -5,11 +5,13 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
-import Detail from './Detail.js'
+import Detail from './routes/Detail.js'
+import axios from 'axios'
+import Cart from './routes/Cart.js'
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -32,13 +34,19 @@ function App() {
             <div className="main-bg"></div>
             <div className="container">
               <div className="row">
-                { shoes.map((a, i)=>{
-                    return (<Card shoes={shoes[i]} i={i}></Card>
-                    )
-                  })
-                }
+              { shoes.map((a, i)=>{
+                  return <Card shoes={shoes[i]} i={i} key={i}></Card>
+                })}
               </div>
             </div>
+            <button onClick={()=>{
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((결과)=>{ 
+                let copy = [...shoes, ...결과.data];
+                setShoes(copy);
+               })
+               
+            }}>더보기</button>
           </>
         }/>
 
@@ -48,6 +56,8 @@ function App() {
           <Route path="member" element={<div>회원</div>} />
           <Route path="location" element={<div>위치정보</div>} />
         </Route>
+
+        <Route path="/cart" element={ <Cart/> } />
 
         <Route path="*" element={<div>없는 페이지입니다.</div>}/>
       </Routes>
