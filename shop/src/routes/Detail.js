@@ -8,11 +8,14 @@ function Detail(props){
   
   let [count, setCount] = useState(0)
   let [alert, setAlert] = useState(true)
+  // id를 useParams를 통해 불러온다.
   let { id } = useParams();
   let [탭, 탭변경] = useState(0)
+  // useParams를 통해 가져온 id로 현재 페이지에서 보여줄 상품을 찾는다.
   let 찾은상품 = props.shoes.find(x => x.id == id)
   let dispatch = useDispatch()
 
+  // 페이지가 로드될 때마다, 상품의 id를 localStorage에 저장
   useEffect(()=>{
     let 꺼낸거 = localStorage.getItem('watched')
     꺼낸거 = JSON.parse(꺼낸거)

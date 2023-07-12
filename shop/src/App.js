@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet, BrowerRouter as Router } from 'react-router-dom'
 import Detail from './routes/Detail.js'
 import axios from 'axios'
 import Cart from './routes/Cart.js'
+import Login from './routes/Login.js'
+import Signup from './routes/Signup.js'
 
 function App() {
 
@@ -28,6 +30,8 @@ function App() {
             <Nav.Link onClick={()=>{ navigate('/') }}>Home</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/detail') }}>Detail</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/cart') }}>CART</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/login') }}>Log in</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/signup') }}>Sign up</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -65,6 +69,8 @@ function App() {
 
         <Route path="/cart" element={ <Cart/> } />
 
+        <Route path="/login" element={ <Login/>}/>
+        <Route path="/signup" element={ <Signup/>}/>
         <Route path="*" element={<div>없는 페이지입니다.</div>}/>
       </Routes>
 
@@ -73,9 +79,15 @@ function App() {
 }
 
 function Card(props){
+  const navigate = useNavigate(); 
+
   return (
     <div className="col-md-4">
-      <img src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) + '.jpg'} width="80%" />
+      <img 
+        src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) + '.jpg'} 
+        width="80%" 
+        onClick={()=> navigate('/detail/' + props.i)}
+      />
       <h4>{ props.shoes.title }</h4>
       <p>{ props.shoes.price }</p>
     </div>
@@ -92,19 +104,3 @@ function About(){
 }
 
 export default App;
-
-{/* <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%"/>
-            <h4>{shoes[0].title}</h4>
-            <p>{shoes[0].price}</p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-            <h4>{shoes[1].title}</h4>
-            <p>{shoes[1].price}</p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
-            <h4>{shoes[2].title}</h4>
-            <p>{shoes[2].price}</p>
-          </div> */}
