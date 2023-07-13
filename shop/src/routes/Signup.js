@@ -1,54 +1,81 @@
 import React, { useState } from 'react';
-import './Login.css';
-import { useNavigate } from 'react-router-dom';
+import './Signup.css';
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 
-function Login() {
+function Signup() {
     const [id, setId] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [role, setRole] = useState('');
+    let navigate = useNavigate();
 
+    const handleSignup = async (e) => {
+        e.preventDefault();
 
-    const handleChange = (event) => {
-        if (event.target.name === "id") {
-            setId(event.target.value);
-        } else if (event.target.name === "password") {
-            setPassword(event.target.value);
+        if (password !== passwordConfirm) {
+            alert('비밀번호가 서로 다릅니다!');
+            return;
+        }
+
+        const API_URL = 'API_URL';
+
+        try {
+            const response = await axios.post(API_URL, {
+                id,
+                name,
+                password,
+                role
+            });
+
+            if (response.status === 200) {
+                alert('회원가입 되었습니다!');
+                setId('');
+                setName('');
+                setPassword('');
+                setPasswordConfirm('');
+                setRole('');
+                navigate('/login')
+            } else {
+                alert('Error');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error');
         }
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        navigate('/')
-        console.log("로그인 되었습니다.");
-        // 여기에 로그인 처리 로직을 작성합니다.
-    }
-
     return (
-        <div className="login">
-            <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <br></br>
-                <hr></hr>
-                <input 
-                    type="text"
-                    name="id"
-                    placeholder="ID"
-                    onChange={handleChange}
-                    value={id} 
-                />
-                <br></br>
-                <br></br>
-                <input 
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    value={password} 
-                />
-                <button type="submit">Login</button>
-            </form>
+        <div className="signup-page">
+            <div className='title'>
+                <Link to="/">
+                    <h1>Solo Live</h1>
+                </Link>
+            </div>
+
+            <div className="signup-page">
+                <form className="signup-form" onSubmit={handleSignup}>
+                    <h2>Sign Up</h2>
+                    <input type="text" placeholder="ID" value={id} onChange={(e) => setId(e.target.value)} required/>
+                    <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required/>
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                    <input type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} required/>
+                    <div className="radio-group">
+                        <label>
+                            <input type="radio" value="student" checked={role === 'student'} onChange={(e) => setRole(e.target.value)} />
+                            Student
+                        </label>
+                        <label>
+                            <input type="radio" value="teacher" checked={role === 'teacher'} onChange={(e) => setRole(e.target.value)} />
+                            Teacher
+                        </label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
         </div>
     );
 }
 
-export default Login;
+export default Signup;

@@ -1,24 +1,35 @@
 .start {
-  opacity : 0
+  opacity: 0;
 }
 .end {
-  opacity : 1;
+  opacity: 1;
   transition: opacity 0.5s;
 }
 
-.main-bg {
-  height: 300px;
+/* .main-bg {
+  height: 50px;
   background-image: url('./img/bg.png');
   background-size: cover;
   background-position: center;
+  margin-bottom: 20px;
 }
+
+.main-bg img {
+  width: 50%;
+} */
 
 .App {
   text-align: center;
+  background-position: center;
+}
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin; 
   pointer-events: none;
 }
 
@@ -37,7 +48,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px; 
 }
+
 
 .App-link {
   color: #61dafb;

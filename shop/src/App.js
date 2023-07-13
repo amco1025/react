@@ -33,7 +33,7 @@ function App() {
             <Nav.Link onClick={()=>{ navigate('/login') }}>Log in</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/signup') }}>Sign up</Nav.Link>
           </Nav>
-        </Container>
+        </Container>  
       </Navbar>
 
 
