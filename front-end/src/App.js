@@ -3,6 +3,7 @@ import './App.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet, BrowerRouter as Router } from 'react-router-dom'
 import logo from './assets/image.png';
+import Signup from './routes/Signup.js'
 
 function App() {
     let navigate = useNavigate();
@@ -20,13 +21,14 @@ function App() {
             </Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link onClick={()=>{ navigate('/') }}>Home</Nav.Link>
+                <Nav.Link onClick={()=>{ navigate('/signup') }}>Sign up</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
 
         <Routes>
             <Route path="/" element={<h1>메인페이지</h1>}/>
-            <Route path="/confirm" element={ <confirm/>}/>
+            <Route path="/Signup" element={ <Signup/>}/>
 
         </Routes>
 
