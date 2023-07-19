@@ -1,0 +1,94 @@
+body {
+    background-color: #ffffff;
+}
+
+
+.login-page {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.title a {
+    color: #ffffff; 
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+.line {
+    border: none;
+    height: 2px;
+    background-color: black;
+}
+
+.login {
+    display: grid;
+    place-items: center;
+}
+
+.login-form {
+    display: grid;
+    place-items: center;
+    padding: 1.33rem; 
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 800px; 
+    grid-gap: 2rem; 
+}
+
+.login-form hr {
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.login-form input {
+    padding: 0.5rem;
+    width: 400px; 
+    border-radius: 1px;
+    border: 1px solid #ddd;
+}
+
+.login-form button {
+    padding: 0.5rem 1rem;
+    width: 400px; 
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #646CFF;
+}
+
+.link-group {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+
+
+.find-link {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.link-group a {
+    color: #000000; 
+    text-decoration: none; 
+}
+
+.divider {
+    padding: 0 0.5rem;
+}
